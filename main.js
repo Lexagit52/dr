@@ -3,7 +3,7 @@ const hoursElement = document.getElementById('hours');
 const minutesElement = document.getElementById('minutes');
 const secondsElement = document.getElementById('seconds');
 
-const birthday = new Date('2024-12-12T00:00:00'); // дата Дня Рождения
+const birthday = new Date('2024-12-25T00:00:00'); // дата Дня Рождения
 
 // Основная функция обратного отсчета
 function updateCountdown() {
