@@ -133,11 +133,11 @@
         
                 <!-- Элементы для торта -->
                 <div id="cake-elements" class="elements-container">
-                    <img class="element" id="bottom-layer" src="корж.webp" alt="Корж 1" draggable="true">
-                    <img class="element" id="cream-1" src="крем.webp" alt="Крем" draggable="true">
-                    <img class="element" id="top-layer" src="корж.webp" alt="Корж 2" draggable="true">
-                    <img class="element" id="cream-2" src="крем.webp" alt="Крем" draggable="true">
-                    <img class="element" id="berries" src="ягода.webp" alt="Ягоды" draggable="true">
+                    <img class="element" id="bottom-layer" src="корж.webp" alt="Корж 1">
+                    <img class="element" id="cream-1" src="крем.webp" alt="Крем">
+                    <img class="element" id="top-layer" src="корж.webp" alt="Корж 2">
+                    <img class="element" id="cream-2" src="крем.webp" alt="Крем">
+                    <img class="element" id="berries" src="ягода.webp" alt="Ягоды">
                 </div>
         
                 <!-- Тарелка для сбора -->
@@ -158,16 +158,39 @@
             const plate = document.getElementById('plate');
             const checkCakeButton = document.getElementById('checkCake');
             const message = document.getElementById('message');
-        
+            
             let cakeParts = [];
+            let draggedElement = null;
         
-            // Функция для перетаскивания элементов
+            // Функция для перетаскивания элементов на ПК
             elements.forEach(element => {
                 element.addEventListener('dragstart', (e) => {
-                    e.dataTransfer.setData('text', e.target.id);
+                    draggedElement = e.target;
+                    e.dataTransfer.setData('text', draggedElement.id);
+                });
+        
+                element.addEventListener('touchstart', (e) => {
+                    draggedElement = e.target;
+                    const touch = e.touches[0];
+                    draggedElement.style.position = 'absolute';
+                    draggedElement.style.left = `${touch.pageX - draggedElement.width / 2}px`;
+                    draggedElement.style.top = `${touch.pageY - draggedElement.height / 2}px`;
+                });
+        
+                element.addEventListener('touchmove', (e) => {
+                    if (draggedElement) {
+                        const touch = e.touches[0];
+                        draggedElement.style.left = `${touch.pageX - draggedElement.width / 2}px`;
+                        draggedElement.style.top = `${touch.pageY - draggedElement.height / 2}px`;
+                    }
+                });
+        
+                element.addEventListener('touchend', () => {
+                    draggedElement = null;
                 });
             });
         
+            // Обработка перетаскивания для тарелки
             plate.addEventListener('dragover', (e) => {
                 e.preventDefault();
             });
@@ -175,22 +198,52 @@
             plate.addEventListener('drop', (e) => {
                 e.preventDefault();
                 const data = e.dataTransfer.getData('text');
-                const draggedElement = document.getElementById(data);
-        
-                // Добавляем элемент на тарелку
-                if (!cakeParts.includes(draggedElement)) {
-                    cakeParts.push(draggedElement);
-                    plate.appendChild(draggedElement);
-                    draggedElement.style.marginTop = '10px';  // для отступа между слоями
+                const element = document.getElementById(data);
+                if (!cakeParts.includes(element)) {
+                    cakeParts.push(element);
+                    plate.appendChild(element);
+                    element.style.marginTop = '10px';
                 }
-        
-                // Активируем кнопку "Проверить торт"
                 checkCakeButton.disabled = false;
             });
         
-            // Функция проверки собранного торта
+            plate.addEventListener('touchstart', (e) => {
+                const touch = e.touches[0];
+                if (draggedElement) {
+                    draggedElement.style.position = 'absolute';
+                    draggedElement.style.left = `${touch.pageX - draggedElement.width / 2}px`;
+                    draggedElement.style.top = `${touch.pageY - draggedElement.height / 2}px`;
+                }
+            });
+        
+            plate.addEventListener('touchmove', (e) => {
+                const touch = e.touches[0];
+                if (draggedElement) {
+                    draggedElement.style.left = `${touch.pageX - draggedElement.width / 2}px`;
+                    draggedElement.style.top = `${touch.pageY - draggedElement.height / 2}px`;
+                }
+            });
+        
+            plate.addEventListener('touchend', (e) => {
+                if (draggedElement) {
+                    const touch = e.changedTouches[0];
+                    const rect = plate.getBoundingClientRect();
+                    if (
+                        touch.pageX > rect.left &&
+                        touch.pageX < rect.right &&
+                        touch.pageY > rect.top &&
+                        touch.pageY < rect.bottom
+                    ) {
+                        cakeParts.push(draggedElement);
+                        plate.appendChild(draggedElement);
+                        draggedElement.style.marginTop = '10px';
+                        checkCakeButton.disabled = false;
+                    }
+                }
+            });
+        
+            // Проверка правильности торта
             checkCakeButton.addEventListener('click', () => {
-                // Правильный порядок элементов для торта
                 const correctOrder = ['bottom-layer', 'cream-1', 'top-layer', 'cream-2', 'berries'];
         
                 if (cakeParts.map(part => part.id).join('') === correctOrder.join('')) {
@@ -212,12 +265,15 @@
                 justify-content: center;
                 gap: 20px;
                 margin-bottom: 20px;
+                flex-wrap: wrap; /* Для мобильных устройств */
             }
         
             .element {
-                width: 80px;  /* Установлен одинаковый размер для всех картинок */
-                height: 80px; /* Установлен одинаковый размер для всех картинок */
+                width: 80px;
+                height: 80px;
                 cursor: grab;
+                touch-action: none; /* Для мобильных устройств */
+                user-select: none; /* Отключает выделение элементов на мобильных */
             }
         
             .element:active {
@@ -233,7 +289,7 @@
                 text-align: center;
                 padding-top: 20px;
                 position: relative;
-                border-radius: 50%; /* Делаем тарелку круглой */
+                border-radius: 50%;
             }
         
             #checkCake {
@@ -256,6 +312,7 @@
                 color: #ff6347;
             }
         </style>
+        
         
         
         
