@@ -1,0 +1,462 @@
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: #ffe6e6;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: #ff9999;
+    color: white;
+    padding: 20px;
+}
+
+.hidden {
+    display: none;
+}
+
+#countdown {
+    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    padding: 30px;
+    border-radius: 15px;
+    margin: 20px auto;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    color: #333;
+}
+
+.timer {
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.time-box {
+    background: #fff;
+    padding: 15px 10px;
+    border-radius: 10px;
+    width: 80px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#birthday-message h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #ff6f61;
+    margin-bottom: 20px;
+}
+
+#start-slides-btn,
+.next-slide-btn {
+    font-size: 1.2rem;
+    padding: 15px 30px;
+    background: linear-gradient(135deg, #ff6f61, #ff9a9e);
+    border: none;
+    border-radius: 50px;
+    color: white;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#slides-container {
+    position: relative;
+    width: 100%;
+    margin: 20px auto;
+    overflow: hidden;
+}
+
+.slide {
+    display: none;
+    text-align: center;
+}
+
+.slide.active {
+    display: block;
+}
+
+
+section {
+    margin: 20px;
+    padding: 10px;
+}
+
+
+#gallery .photos img {
+    width: 200px;
+    margin: 10px;
+    border-radius: 10px;
+}
+
+button {
+    background: #ff6666;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #ff3333;
+}
+
+
+#countdown h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    color: #fff;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+
+
+
+
+.time-box span {
+    display: block;
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #ff6f61;
+}
+
+.time-box p {
+    margin: 0;
+    font-size: 1rem;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/*надпись */
+#birthday-banner {
+    text-align: center;
+    margin: 40px auto;
+    position: relative;
+}
+
+.rope {
+    width: 90%;
+    max-width: 600px;
+    height: 4px;
+    background: #f22525;
+    margin: 0 auto;
+    position: relative;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transform: translateY(20px); /* Эффект натяжения */
+    clip-path: path('M 0,0 Q 300,40 600,0'); /* Провисание */
+}
+
+.letters {
+    display: flex;
+    justify-content: center;
+}
+
+/* Стили для слайда */
+.slide {
+    background-color: #fef8f5; /* Мягкий фон */
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 700px;
+    margin: 20px auto;
+    font-family: 'Arial', sans-serif;
+}
+
+.greeting-message {
+    font-size: 1.5rem;
+    line-height: 1.6;
+    color: #4a4a4a;
+    text-align: left;
+}
+
+.greeting-message ul {
+    list-style-type: none; /* Убираем маркеры */
+    padding-left: 0;
+}
+
+.greeting-message li {
+    margin-bottom: 20px;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #ff6f61;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+    transition: color 0.3s ease;
+}
+
+.greeting-message li:hover {
+    color: #e04b3a; /* Цвет текста при наведении */
+}
+
+/* Стили для кнопки */
+.next-slide-btn {
+    background: linear-gradient(135deg, #ff6f61, #ff9a9e);
+    border: none;
+    padding: 15px 30px;
+    border-radius: 50px;
+    color: white;
+    font-size: 1.2rem;
+    margin-top: 20px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.next-slide-btn:hover {
+    transform: scale(1.05); /* Увеличение кнопки при наведении */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+}
+
+.next-slide-btn:active {
+    transform: scale(0.95); /* Уменьшение кнопки при нажатии */
+}
+
+
+
+/*подсвечивание*/
+.letters {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    margin-top: 30px;
+    position: relative;
+}
+
+.letters span {
+    display: inline-block;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #fff;
+    background: linear-gradient(135deg, #e054e0, #a6c1ee);
+    border-radius: 50%;
+    padding: 15px;
+    box-shadow: 0 4px 10px rgba(177, 2, 2, 0.2);
+    position: relative;
+    animation: glow 1.5s infinite alternate;
+    transform: translateY(var(--drop));
+}
+
+.letters span:nth-child(1) { --drop: 0px; }
+.letters span:nth-child(2) { --drop: 5px; }
+.letters span:nth-child(3) { --drop: 10px; }
+.letters span:nth-child(4) { --drop: 15px; }
+.letters span:nth-child(5) { --drop: 20px; }
+.letters span:nth-child(6) { --drop: 25px; }
+.letters span:nth-child(7) { --drop: 20px; }
+.letters span:nth-child(8) { --drop: 15px; }
+.letters span:nth-child(9) { --drop: 10px; }
+.letters span:nth-child(10) { --drop: 5px; }
+.letters span:nth-child(11) { --drop: 0px; }
+.letters span:nth-child(12) { --drop: -5px; }
+.letters span:nth-child(13) { --drop: -10px; }
+.letters span:nth-child(14) { --drop: -15px; }
+.letters span:nth-child(15) { --drop: -20px; }
+
+/* Эффект свечения */
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 10px rgba(248, 247, 247, 0.5);
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    }
+}
+
+/*надпись и кнопка */
+#birthday-message h1 {
+    font-size: 3rem; /* Размер текста */
+    font-weight: bold;
+    color: #ff6f61; /* Яркий цвет */
+    text-shadow: 0 0 10px rgba(243, 53, 43, 0.8), 
+                 0 0 20px rgba(248, 66, 56, 0.6), 
+                 0 0 30px rgba(253, 78, 69, 0.4);
+    animation: glow-text 1.5s infinite alternate;
+    margin-bottom: 20px;
+}
+
+@keyframes glow-text {
+    0% {
+        text-shadow: 0 0 10px rgba(255, 105, 97, 0.8),
+                     0 0 20px rgba(255, 105, 97, 0.6),
+                     0 0 30px rgba(255, 105, 97, 0.4);
+    }
+    100% {
+        text-shadow: 0 0 20px rgba(255, 105, 97, 1),
+                     0 0 40px rgba(255, 105, 97, 0.8),
+                     0 0 60px rgba(255, 105, 97, 0.6);
+    }
+}
+#next-slide-btn {
+    font-size: 1.2rem; /* Размер текста */
+    padding: 15px 30px; /* Внутренние отступы */
+    background: linear-gradient(135deg, #ff6f61, #ff9a9e);
+    border: none; /* Убираем рамку */
+    border-radius: 50px; /* Закругление */
+    color: white; /* Цвет текста */
+    cursor: pointer; /* Курсор "рука" */
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+#next-slide-btn:hover {
+    transform: scale(1.1); /* Увеличение при наведении */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Усиление тени */
+}
+
+#next-slide-btn:active {
+    transform: scale(0.95); /* Уменьшение при нажатии */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Тень становится слабее */
+}
+/*стили слайдов */
+#slides-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin: 20px auto;
+    overflow: hidden;
+}
+
+.slide {
+    display: none; /* Скрываем слайды по умолчанию */
+    text-align: center;
+}
+
+.slide.active {
+    display: block; /* Показываем только активный слайд */
+}
+
+/*2 слайд*/
+.inspiration-image {
+    width: 100%;
+    height: auto;
+    max-width: 600px;
+    margin-top: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.inspiration-image:hover {
+    transform: scale(1.05); /* Увеличение изображения при наведении */
+}
+@keyframes text-appear {
+    0% { opacity: 0; transform: translateY(50px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.slide h1, .slide p {
+    animation: text-appear 1.5s ease-in-out forwards;
+}
+
+
+/*для фоток */
+.photo-gallery {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.photo-gallery img {
+    width: 32%;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.photo-gallery img:hover {
+    transform: scale(1.05);
+}
+
+
+/*стиль 3 слайда*/
+
+/* Новый стиль слайда */
+.decorated-slide {
+    background: linear-gradient(135deg, #e3fdfd, #ffe6fa); /* Градиент */
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+/* Заголовок */
+.title {
+    font-family: 'Arial', sans-serif;
+    color: #ff6f61;
+    margin-bottom: 20px;
+    font-size: 2em;
+    text-shadow: 2px 2px 5px rgba(255, 111, 97, 0.5);
+}
+
+/* Галерея фото */
+.photo-gallery {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.gallery-item {
+    width: 30%;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.gallery-item:hover {
+    transform: scale(1.05);
+}
+
+/* Галерея видео */
+.video-gallery {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.gallery-video {
+    width: 30%;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.gallery-video:hover {
+    transform: scale(1.05);
+}
+
+/* Кнопка */
+.pulse-btn {
+    background-color: #ff6f61;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(255, 111, 97, 0.5);
+    transition: all 0.3s ease;
+    animation: pulse 2s infinite;
+}
+
+.pulse-btn:hover {
+    background-color: #ff3f2f;
+    transform: scale(1.1);
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
